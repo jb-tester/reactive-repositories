@@ -1,6 +1,7 @@
 package com.mytests.spring.jpa.reactiverepositories;
 
 import com.mytests.spring.jpa.reactiverepositories.services.ImplicitReactiveRepoService;
+import com.mytests.spring.jpa.reactiverepositories.services.ReactiveService;
 import com.mytests.spring.jpa.reactiverepositories.services.RxJavaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +15,9 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
     private ImplicitReactiveRepoService implicitReactiveRepoService;
     @Autowired
     private RxJavaService rxJavaService;
+    @Autowired
+    private ReactiveService reactiveService;
+
 
     public static void main(String[] args) {
         SpringApplication.run(ReactiveRepositoriesApplication.class, args);
@@ -23,5 +27,7 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
          implicitReactiveRepoService.findByNameUseReactiveTypes();
          rxJavaService.allByNameWithStr();
+         reactiveService.displayExistsByAgeResult();
+         reactiveService.displayByNameAndAge();
     }
 }

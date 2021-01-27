@@ -25,7 +25,7 @@ public class ImplicitReactiveRepoService {
 
     public void findByNameUseReactiveTypes(){
 
-
+        System.out.println("=== implicit reactive repo: findAllByName('name3') ===");
         Mono<String> name = Mono.just("name3");
         List<User> users = userImplicitReactRepo.findAllByName(name).collectList().block();
         System.out.println(users.get(0).toString());

@@ -15,6 +15,7 @@ public class RxJavaService {
     private UserRXJavaRepo userRXJavaRepo;
 
      public void allByNameWithStr() throws InterruptedException {
+         System.out.println("=== rx repo: findAllByNameContaining('name') ===");
          CountDownLatch countDownLatch = new CountDownLatch(1);
         userRXJavaRepo.findAllByNameContaining("name")
                 .doOnNext(System.out::println) //
