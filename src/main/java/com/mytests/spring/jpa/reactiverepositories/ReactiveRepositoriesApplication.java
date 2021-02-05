@@ -29,5 +29,6 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
          rxJavaService.allByNameWithStr();
          reactiveService.displayExistsByAgeResult();
          reactiveService.displayByNameAndAge();
+         reactiveService.displayNameByAge();
     }
 }

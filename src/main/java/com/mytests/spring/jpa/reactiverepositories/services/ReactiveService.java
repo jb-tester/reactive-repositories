@@ -34,4 +34,9 @@ public class ReactiveService {
             System.out.println(user.toString());
         }
     }
+    public void displayNameByAge(){
+        System.out.println("=== reactive repo: findFirstNameByAgeGreaterThan(20) ===");
+        Mono<String> rez = userReactiveRepo.findNameByAgeGreaterThan(20);
+        System.out.println(rez.block());
+    }
 }
