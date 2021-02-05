@@ -39,4 +39,11 @@ public class ReactiveService {
         Mono<String> rez = userReactiveRepo.findNameByAgeGreaterThan(20);
         System.out.println(rez.block());
     }
+    public void displayByName(){
+        System.out.println("=== reactive repo: findByName('name1') ===");
+        Flux<User> users_flux = userReactiveRepo.findByName("name1");
+        for (User user : Objects.requireNonNull(users_flux.collectList().block())) {
+            System.out.println(user.toString());
+        }
+    }
 }
