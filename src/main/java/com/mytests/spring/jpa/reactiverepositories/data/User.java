@@ -1,7 +1,9 @@
 package com.mytests.spring.jpa.reactiverepositories.data;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -12,13 +14,15 @@ import java.util.List;
  * Project: reactiveTest1
  * *******************************
  */
-@Document
+@Document("user")
 public class User {
 
     @Id
     BigInteger id;
+    @Field("name")
     String name;
     int age;
+    //@DBRef
     List<String> references;
 
     public BigInteger getId() {
