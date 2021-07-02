@@ -39,6 +39,13 @@ public class ReactiveService {
         Mono<String> rez = userReactiveRepo.findNameByAgeGreaterThan(20);
         System.out.println(rez.block());
     }
+    public void displayNamesByAge(){
+        System.out.println("=== reactive repo: findNameaByAgeLessThan(60) ===");
+        Flux<String> rez = userReactiveRepo.findNamesByAgeLessThan(Mono.just(60));
+        for (String userName : Objects.requireNonNull(rez.collectList().block())) {
+            System.out.println(userName);
+        }
+    }
     public void displayByName(){
         System.out.println("=== reactive repo: findByName('name1') ===");
         Flux<User> users_flux = userReactiveRepo.findByName("name1");
@@ -54,8 +61,10 @@ public class ReactiveService {
         Flux<User> users1 = userReactiveRepo.findByAgeIsNotIn(ages);
         //Flux<User> users2 = userReactiveRepo.findByAgeBetween(age);
         Flux<User> users2 = userReactiveRepo.findByAgeBetween(ages);
-        Flux<User> users3 = userReactiveRepo.findByAge(age);
-        //Flux<User> users3 = userReactiveRepo.findByAge(ages);
+        Flux<User> users3 = userReactiveRepo.findByAgeWithin(ages);
+        //Flux<User> users3 = userReactiveRepo.findByAgeWithin(age);
+        Flux<User> users4 = userReactiveRepo.findByAge(age);
+        //Flux<User> users4 = userReactiveRepo.findByAge(ages);
         System.out.println("**********************************");
         System.out.println("users of age not in (param)");
         displayFoundUsers(users1);
@@ -65,8 +74,12 @@ public class ReactiveService {
         displayFoundUsers(users2);
         System.out.println("**********************************");
         System.out.println("**********************************");
-        System.out.println("users of (param) age ");
+        System.out.println("users of age Within (param)");
         displayFoundUsers(users3);
+        System.out.println("**********************************");
+        System.out.println("**********************************");
+        System.out.println("users of (param) age ");
+        displayFoundUsers(users4);
         System.out.println("**********************************");
     }
 
