@@ -31,5 +31,6 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
          reactiveService.displayByNameAndAge();
          reactiveService.displayNameByAge();
          reactiveService.displayByName();
+         reactiveService.displayAgesQueries();
     }
 }

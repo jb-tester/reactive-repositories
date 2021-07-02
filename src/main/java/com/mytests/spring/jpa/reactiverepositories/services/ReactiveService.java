@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -30,9 +32,7 @@ public class ReactiveService {
     public void displayByNameAndAge(){
         System.out.println("=== reactive repo: findByNameAndAge('name1',18) ===");
         Flux<User> users_flux = userReactiveRepo.findByNameAndAge("name1",Mono.just(18));
-        for (User user : Objects.requireNonNull(users_flux.collectList().block())) {
-            System.out.println(user.toString());
-        }
+        displayFoundUsers(users_flux);
     }
     public void displayNameByAge(){
         System.out.println("=== reactive repo: findFirstNameByAgeGreaterThan(20) ===");
@@ -42,7 +42,36 @@ public class ReactiveService {
     public void displayByName(){
         System.out.println("=== reactive repo: findByName('name1') ===");
         Flux<User> users_flux = userReactiveRepo.findByName("name1");
-        for (User user : Objects.requireNonNull(users_flux.collectList().block())) {
+        displayFoundUsers(users_flux);
+    }
+    public void displayAgesQueries(){
+        Mono<Integer> age = Mono.just(20);
+        List<Integer> agesList = new ArrayList<>();
+        agesList.add(18);
+        agesList.add(25);
+        Flux<Integer> ages = Flux.fromIterable(agesList);
+       // Flux<User> users1 = userReactiveRepo.findByAgeIsNotIn(age);
+        Flux<User> users1 = userReactiveRepo.findByAgeIsNotIn(ages);
+        //Flux<User> users2 = userReactiveRepo.findByAgeBetween(age);
+        Flux<User> users2 = userReactiveRepo.findByAgeBetween(ages);
+        Flux<User> users3 = userReactiveRepo.findByAge(age);
+        //Flux<User> users3 = userReactiveRepo.findByAge(ages);
+        System.out.println("**********************************");
+        System.out.println("users of age not in (param)");
+        displayFoundUsers(users1);
+        System.out.println("**********************************");
+        System.out.println("**********************************");
+        System.out.println("users of age between (param)");
+        displayFoundUsers(users2);
+        System.out.println("**********************************");
+        System.out.println("**********************************");
+        System.out.println("users of (param) age ");
+        displayFoundUsers(users3);
+        System.out.println("**********************************");
+    }
+
+    private void displayFoundUsers(Flux<User> users1) {
+        for (User user : Objects.requireNonNull(users1.collectList().block())) {
             System.out.println(user.toString());
         }
     }
