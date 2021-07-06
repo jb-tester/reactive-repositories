@@ -51,8 +51,9 @@ public class ReactiveService {
         Flux<User> users_flux = userReactiveRepo.findByName("name1");
         displayFoundUsers(users_flux);
     }
-    public void displayAgesQueries(){
+   /* public void displayAgesQueries(){
         Mono<Integer> age = Mono.just(20);
+        Mono<Integer> age2 = Mono.just(50);
         List<Integer> agesList = new ArrayList<>();
         agesList.add(18);
         agesList.add(25);
@@ -60,7 +61,7 @@ public class ReactiveService {
        // Flux<User> users1 = userReactiveRepo.findByAgeIsNotIn(age);
         Flux<User> users1 = userReactiveRepo.findByAgeIsNotIn(ages);
         //Flux<User> users2 = userReactiveRepo.findByAgeBetween(age);
-        Flux<User> users2 = userReactiveRepo.findByAgeBetween(ages);
+        Flux<User> users2 = userReactiveRepo.findByAgeBetween(age,age2);
         Flux<User> users3 = userReactiveRepo.findByAgeWithin(ages);
         //Flux<User> users3 = userReactiveRepo.findByAgeWithin(age);
         Flux<User> users4 = userReactiveRepo.findByAge(age);
@@ -82,7 +83,7 @@ public class ReactiveService {
         displayFoundUsers(users4);
         System.out.println("**********************************");
     }
-
+*/
     private void displayFoundUsers(Flux<User> users1) {
         for (User user : Objects.requireNonNull(users1.collectList().block())) {
             System.out.println(user.toString());

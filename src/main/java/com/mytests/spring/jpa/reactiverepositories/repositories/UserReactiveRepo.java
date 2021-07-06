@@ -17,16 +17,16 @@ import java.util.Collection;
  */
 public interface UserReactiveRepo extends ReactiveCrudRepository<User, BigInteger> {
 
-   // Flux<User> findByAgeIsNotIn(Mono<Integer> age);  // incorrect?
+  /* // Flux<User> findByAgeIsNotIn(Mono<Integer> age);  // incorrect?
     Flux<User> findByAgeIsNotIn(Flux<Integer> age);
-   // Flux<User> findByAgeBetween(Mono<Integer> age);  // error shown: expected int, int
-   Flux<User> findByAgeBetween(Flux<Integer> age); // error shown: expected int, int
+   Flux<User> findByAgeBetween(Mono<Integer> age, Mono<Integer> age2);  // error shown: expected int, int
+   //Flux<User> findByAgeBetween(Flux<Integer> age); // error shown: expected int, int
    // Flux<User> findByAgeWithin(Mono<Integer> age);
     Flux<User> findByAgeWithin(Flux<Integer> age);
    // Flux<User> findByAge(Flux<Integer> age);  // incorrect?
     Flux<User> findByAge(Mono<Integer> age);
     
-    Flux<User> findByNameMatchesRegex(String name);  
+    Flux<User> findByNameMatchesRegex(String name);  */
     
     Flux<User> findByNameAndAge(String name, Mono<Integer> age);
     Mono<Boolean> existsByAge(int age);     // error is shown
