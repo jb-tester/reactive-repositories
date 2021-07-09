@@ -14,7 +14,8 @@ import java.util.List;
  * *******************************
  */
 public interface UserImperativeRepo extends CrudRepository<User, BigInteger> {
-    
+    // https://youtrack.jetbrains.com/issue/IDEA-172034:
+    // exists keyword requires the boolean parameter, but IDEA shows it as an error
     List<User> findByReferencesExists(boolean exists);
     
    

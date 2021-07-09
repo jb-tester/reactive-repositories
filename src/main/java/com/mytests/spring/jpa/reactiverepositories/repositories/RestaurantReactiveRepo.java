@@ -6,12 +6,7 @@ import org.springframework.data.geo.Point;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
 
-/**
- * *
- * <p>Created by irina on 09.07.2021.</p>
- * <p>Project: reactive-repositories</p>
- * *
- */
+// MongoDB geospatial queries tests
 public interface RestaurantReactiveRepo extends ReactiveCrudRepository<Restaurant, Integer> {
     
     // incorrect parameter type Point is suggested here:
