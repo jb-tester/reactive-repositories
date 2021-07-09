@@ -1,8 +1,6 @@
 package com.mytests.spring.jpa.reactiverepositories;
 
-import com.mytests.spring.jpa.reactiverepositories.services.ImplicitReactiveRepoService;
-import com.mytests.spring.jpa.reactiverepositories.services.ReactiveService;
-import com.mytests.spring.jpa.reactiverepositories.services.RxJavaService;
+import com.mytests.spring.jpa.reactiverepositories.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +15,12 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
     private RxJavaService rxJavaService;
     @Autowired
     private ReactiveService reactiveService;
+    @Autowired
+    private NonReactiveRepoService nonReactiveRepoService;
+    @Autowired
+    private ReactiveRestaurantsService reactiveRestaurantsService;
+    @Autowired
+    private RestaurantsService restaurantsService;
 
 
     public static void main(String[] args) {
@@ -25,13 +29,21 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-         implicitReactiveRepoService.findByNameUseReactiveTypes();
-         rxJavaService.allByNameWithStr();
-         reactiveService.displayExistsByAgeResult();
-         reactiveService.displayByNameAndAge();
-         reactiveService.displayNameByAge();
-         reactiveService.displayNamesByAge();
-         reactiveService.displayByName();
-        // reactiveService.displayAgesQueries();
+        // nonReactiveRepoService.init();
+        //  reactiveRestaurantsService.init();
+        nonReactiveRepoService.testExistsOperator();
+        implicitReactiveRepoService.findByNameUseReactiveTypes();
+        rxJavaService.allByNameWithStr();
+        reactiveService.displayExistsByAgeResult();
+        reactiveService.displayByNameAndAge();
+        reactiveService.displayNameByAge();
+        reactiveService.displayNamesByAge();
+        reactiveService.displayByName();
+        reactiveService.displayAgesQueries();
+        
+        reactiveRestaurantsService.showAllRestaurants();
+        reactiveRestaurantsService.reactiveRestaurantsWithin();
+        restaurantsService.showAllItalianRestaurants();
+        restaurantsService.restaurantsWithinCircle();
     }
 }
