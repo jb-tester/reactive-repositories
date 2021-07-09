@@ -1,9 +1,11 @@
 package com.mytests.spring.jpa.reactiverepositories.repositories;
 
 import com.mytests.spring.jpa.reactiverepositories.data.User;
+import org.springframework.data.geo.Box;
 import org.springframework.data.repository.CrudRepository;
 
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  * *******************************
@@ -12,4 +14,8 @@ import java.math.BigInteger;
  * *******************************
  */
 public interface UserImperativeRepo extends CrudRepository<User, BigInteger> {
+    
+    List<User> findByReferencesExists(boolean exists);
+    
+   
 }
