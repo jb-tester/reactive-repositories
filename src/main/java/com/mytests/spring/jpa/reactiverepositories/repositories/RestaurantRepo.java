@@ -8,7 +8,8 @@ import reactor.core.publisher.Flux;
 
 import java.util.List;
 
- // MongoDB geospatial queries tests
+ // MongoDB geospatial queries tests 
+ // https://youtrack.jetbrains.com/issue/IDEA-171486
 public interface RestaurantRepo extends CrudRepository<Restaurant, Integer> {
     
     List<Restaurant> findByCuisineLike(String cuisine);

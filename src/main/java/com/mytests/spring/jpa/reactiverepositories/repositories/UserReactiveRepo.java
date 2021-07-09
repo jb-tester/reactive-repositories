@@ -27,11 +27,14 @@ public interface UserReactiveRepo extends ReactiveCrudRepository<User, BigIntege
     Flux<User> findByNameMatchesRegex(String name);  
     
     Flux<User> findByNameAndAge(String name, Mono<Integer> age);
-    Mono<Boolean> existsByAge(int age);     // error is shown
-    //Mono<String> findNameByAgeGreaterThan(int age);   // no error is shown but should!
+    Mono<Boolean> existsByAge(int age);     // error is shown  https://youtrack.jetbrains.com/issue/IDEA-260454
+    Flux<String> findNamesByAgeLessThan(Mono<Integer> age); // error is shown
+ 
+   //Mono<String> findNameByAgeGreaterThan(int age);   // no error is shown but should!
     Mono<String> findFirstNameByAgeGreaterThan(int age);
-    Flux<String> findNamesByAgeLessThan(Mono<Integer> age); // error is shown - regression?!
     Mono<Integer> countByNameContaining(Mono<String> name);
+    
+    
      @Query("{ 'name' : ?0 }")
     Flux<User> findByName(String name);
     
