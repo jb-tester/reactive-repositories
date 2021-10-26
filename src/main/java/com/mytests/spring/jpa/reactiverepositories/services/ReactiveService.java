@@ -59,7 +59,7 @@ public class ReactiveService {
         agesList.add(25);
         Flux<Integer> ages = Flux.fromIterable(agesList);
        // Flux<User> users1 = userReactiveRepo.findByAgeIsNotIn(age);
-        Flux<User> users1 = userReactiveRepo.findByAgeIsNotIn(ages);
+        Flux<User> users1 = Flux.from(userReactiveRepo.findByAgeIsNotIn(ages));
         //Flux<User> users2 = userReactiveRepo.findByAgeBetween(age);
         Flux<User> users2 = userReactiveRepo.findByAgeBetween(age,age2);
         

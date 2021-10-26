@@ -1,6 +1,7 @@
 package com.mytests.spring.jpa.reactiverepositories.repositories;
 
 import com.mytests.spring.jpa.reactiverepositories.data.User;
+import org.reactivestreams.Publisher;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
@@ -16,9 +17,8 @@ import java.math.BigInteger;
  */
 public interface UserReactiveRepo extends ReactiveCrudRepository<User, BigInteger> {
 
-    // https://youtrack.jetbrains.com/issue/IDEA-272981
-    //Flux<User> findByAgeIsNotIn(Mono<Integer> age);  // incorrect, but no errors
-    Flux<User> findByAgeIsNotIn(Flux<Integer> age);
+    // use Publisher as return type and parameters type
+    Publisher<User> findByAgeIsNotIn(Publisher<Integer> age);
 
     Flux<User> findByAgeBetween(Mono<Integer> age, Mono<Integer> age2);  //  ok
     //Flux<User> findByAgeBetween(Flux<Integer> age); // error shown: expected int, int   - ok
