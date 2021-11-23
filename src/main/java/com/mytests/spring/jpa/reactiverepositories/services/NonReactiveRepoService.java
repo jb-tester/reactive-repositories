@@ -25,12 +25,17 @@ public class NonReactiveRepoService {
     UserImperativeRepo repo;
     
     public void init(){
+
         List<String> ref3 = new ArrayList<>();
         ref3.add("reference41");
         ref3.add("reference42");
         ref3.add("reference43");
+        List<String> ref2 = new ArrayList<>();
+        ref2.add("reference51");
+        ref2.add("reference52");
+        ref2.add("reference53");
         User user1 = new User("name6", 50, null);
-        User user2 = new User("name5", 60, null);
+        User user2 = new User("name5", 60, ref2);
         User user3 = new User("name4", 30, ref3);
         List<User> users = new ArrayList<>();
         users.add(user1);

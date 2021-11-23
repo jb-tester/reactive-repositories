@@ -34,6 +34,9 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
         nonReactiveRepoService.testExistsOperator();
         implicitReactiveRepoService.findByNameUseReactiveTypes();
         rxJavaService.allByNameWithStr();
+        rxJavaService.allWithReferences();
+        rxJavaService.allByNameOrReference();
+        rxJavaService.findUserWithAges();
         reactiveService.displayExistsByAgeResult();
         reactiveService.displayByNameAndAge();
         reactiveService.displayNameByAge();
