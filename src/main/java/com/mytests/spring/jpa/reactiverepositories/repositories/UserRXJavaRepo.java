@@ -20,6 +20,8 @@ import java.util.List;
  */
 public interface UserRXJavaRepo extends RxJava2CrudRepository<User, String> {
 
+    Observable<User> findByNameAndReferences(Single<String> name, Flowable<String> references);
+
     Observable<User> findAllByNameContaining(String name);
 
     Observable<User> findAllByNameIn(Observable<String> name);
@@ -28,7 +30,7 @@ public interface UserRXJavaRepo extends RxJava2CrudRepository<User, String> {
     Flowable<User> findByReferencesNotNull(); // Flowable<T> return type is reported as error
 
     Flowable<User> findByReferences(Flowable<String> references); // Flowable<T> parameter type is reported as error;
-    // Single<List<T>> is suggested for collection-type fields
+                                                                  // Single<List<T>> is suggested for collection-type fields
 
     Observable<User> findByNameOrReferences(Single<String> name, List<String> references);
 
