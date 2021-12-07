@@ -23,7 +23,8 @@ public interface UserReactiveRepo extends ReactiveCrudRepository<User, BigIntege
     Flux<User> findByAgeBetween(Mono<Integer> age, Mono<Integer> age2);  //  ok
     //Flux<User> findByAgeBetween(Flux<Integer> age); // error shown: expected int, int   - ok
 
-    // Flux<User> findByAge(Flux<Integer> age);  // incorrect, but no errors are shown
+    //Flux<User> findByAge(Flux<Integer> age);  // incorrect, but no errors are shown
+
     Flux<User> findByAge(Mono<Integer> age);   // ok
 
     Flux<User> findByNameMatchesRegex(String name);
@@ -32,13 +33,14 @@ public interface UserReactiveRepo extends ReactiveCrudRepository<User, BigIntege
 
     Mono<Boolean> existsByAge(int age);     // error is shown  https://youtrack.jetbrains.com/issue/IDEA-260454
 
-    Flux<String> findNamesByAgeLessThan(Mono<Integer> age); // error is shown
-
-    //Mono<String> findNameByAgeGreaterThan(int age);   // no error is shown but should!
+    Flux<User> findFirst2ByAgeLessThan(Mono<Integer> age); // first<number>
+    Mono<User> findTop1ByAgeLessThan(Mono<Integer> age);   // top<number>
+    Flux<UserName> findByAgeIn(Flux<Integer> age); // test projection and correct parameter type suggesting for 'in'
+    Mono<Integer> countByNameContaining(Mono<String> name);
     Mono<String> findFirstNameByAgeGreaterThan(int age);
 
-    Mono<Integer> countByNameContaining(Mono<String> name);
 
+    //Mono<String> findNameByAgeGreaterThan(int age);   // no error is shown but should!
 
     @Query("{ 'name' : ?0 }")
     Flux<User> findByName(String name);

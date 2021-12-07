@@ -1,6 +1,7 @@
 package com.mytests.spring.jpa.reactiverepositories.services;
 
 import com.mytests.spring.jpa.reactiverepositories.data.User;
+import com.mytests.spring.jpa.reactiverepositories.repositories.UserName;
 import com.mytests.spring.jpa.reactiverepositories.repositories.UserReactiveRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,11 +40,22 @@ public class ReactiveService {
         Mono<String> rez = userReactiveRepo.findFirstNameByAgeGreaterThan(20);
         System.out.println(rez.block());
     }
-    public void displayNamesByAge(){
-        System.out.println("=== reactive repo: findNameaByAgeLessThan(60) ===");
-        Flux<String> rez = userReactiveRepo.findNamesByAgeLessThan(Mono.just(60));
-        for (String userName : Objects.requireNonNull(rez.collectList().block())) {
-            System.out.println(userName);
+    public void displayTop1AndFirst2ByAge(){
+        System.out.println("=== reactive repo: findTop1ByAgeLessThan(60) ===");
+        Mono<User> mrez = userReactiveRepo.findTop1ByAgeLessThan(Mono.just(60));
+        System.out.println(mrez.block());
+        System.out.println("=== reactive repo: findFirst2ByAgeLessThan(60) ===");
+        Flux<User> rez = userReactiveRepo.findFirst2ByAgeLessThan(Mono.just(60));
+        for (User user : Objects.requireNonNull(rez.collectList().block())) {
+            System.out.println(user);
+        }
+    }
+    public void useProjection(){
+
+        System.out.println("=== reactive repo: use UserName projection");
+        Flux<UserName> projections = userReactiveRepo.findByAgeIn(Flux.fromArray(new Integer[]{50, 60}));
+        for (UserName userName : Objects.requireNonNull(projections.collectList().block())) {
+            System.out.println(userName.getName());
         }
     }
     public void displayByName(){
