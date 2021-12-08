@@ -21,6 +21,8 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
     private ReactiveRestaurantsService reactiveRestaurantsService;
     @Autowired
     private RestaurantsService restaurantsService;
+    @Autowired
+    private MixedRepoService mixedRepoService;
 
 
     public static void main(String[] args) {
@@ -31,7 +33,7 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // nonReactiveRepoService.init();
         //  reactiveRestaurantsService.init();
-        nonReactiveRepoService.testExistsOperator();
+        /*nonReactiveRepoService.testExistsOperator();
         implicitReactiveRepoService.findByNameUseReactiveTypes();
         rxJavaService.allByNameWithStr();
         rxJavaService.allWithReferences();
@@ -48,6 +50,7 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
         reactiveRestaurantsService.showAllRestaurants();
         reactiveRestaurantsService.reactiveRestaurantsWithin();
         restaurantsService.showAllItalianRestaurants();
-        restaurantsService.restaurantsWithinCircle();
+        restaurantsService.restaurantsWithinCircle();*/
+        mixedRepoService.useMixedTypeQueries();
     }
 }
