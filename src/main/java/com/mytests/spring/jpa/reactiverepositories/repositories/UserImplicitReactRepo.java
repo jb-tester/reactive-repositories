@@ -14,6 +14,6 @@ import java.math.BigInteger;
  * *******************************
  */
 public interface UserImplicitReactRepo extends CrudRepository<User, BigInteger> {
-    Flux<User> findAllByName(Mono<String> name);
+    Flux<User> findAllByName(Mono<String> name); // https://youtrack.jetbrains.com/issue/IDEA-232843
 
 }
