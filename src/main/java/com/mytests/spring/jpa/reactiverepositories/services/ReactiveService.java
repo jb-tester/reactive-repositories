@@ -64,6 +64,7 @@ public class ReactiveService {
         displayFoundUsers(users_flux);
     }
     public void displayAgesQueries(){
+        System.out.println("=== reactive repo: age queries ===");
         Mono<Integer> age = Mono.just(30);
         Mono<Integer> age2 = Mono.just(50);
         List<Integer> agesList = new ArrayList<>();
@@ -78,13 +79,13 @@ public class ReactiveService {
         Flux<User> users4 = userReactiveRepo.findByAge(age);
         //Flux<User> users4 = userReactiveRepo.findByAge(ages);
         System.out.println("**********************************");
-        System.out.println("users of age not in (param)");
+        System.out.println("publisher of users of age not in (publisher of ages)");
         displayFoundUsers(users1);
         System.out.println("**********************************");
-        System.out.println("users of age between (param)");
+        System.out.println("flux of users of age between (mono and mono ages)");
         displayFoundUsers(users2);
         System.out.println("**********************************");
-        System.out.println("users of (param) age ");
+        System.out.println("flux users of (mono age) ");
         displayFoundUsers(users4);
         System.out.println("**********************************");
     }

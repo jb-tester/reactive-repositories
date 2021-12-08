@@ -66,7 +66,7 @@ public class RxJavaService {
     public void findUserWithAges(){
         System.out.println("=== rx repo: findFirstByAgeBetween(30,60)");
         //System.out.println(userRXJavaRepo.findFirstByAgeBetween(40, 60)); // invalid query usage
-        System.out.println(userRXJavaRepo.findFirstByAgeBetween(40, 50).blockingGet());
+        System.out.println(userRXJavaRepo.findFirstByAgeBetween(30, 60).blockingGet());
     }
 
 }

@@ -22,11 +22,11 @@ public class MixedRepoService {
 
     public void useMixedTypeQueries() {
         System.out.println("=== Mixed Repository that extends non-reactive interface and ReactiveCrudRepository ===");
-        System.out.println("= non-reactive query from parent: =");
+        System.out.println("= reactive query from child: =");
         for (User user : Objects.requireNonNull(mixedUserRepo.getAllByAgeAfter(Mono.just(50)).collectList().block())) {
             System.out.println(user.toString());
         }
-        // System.out.println("= non-reactive query from parent: =");
+        System.out.println("= non-reactive query from parent: =");
         //System.out.println(mixedUserRepo.findFirstByName("name3"));  // fails
         //System.out.println(mixedUserRepo.findFirstByName(Mono.just("name3")).block()); // works
     }
