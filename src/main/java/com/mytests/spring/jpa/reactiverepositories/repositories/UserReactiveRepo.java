@@ -31,7 +31,7 @@ public interface UserReactiveRepo extends ReactiveCrudRepository<User, BigIntege
 
     Flux<User> findByNameAndAge(String name, Mono<Integer> age);
 
-    Mono<Boolean> existsByAge(int age);     // error is shown  https://youtrack.jetbrains.com/issue/IDEA-260454
+    Mono<Boolean> existsByAge(int age);     // error is shown  https://youtrack.jetbrains.com/issue/IDEA-260454 - fixed
 
     Flux<User> findFirst2ByAgeLessThan(Mono<Integer> age); // first<number>
     Mono<User> findTop1ByAgeLessThan(Mono<Integer> age);   // top<number>

@@ -69,6 +69,7 @@ public class ReactiveRepositoriesApplication implements CommandLineRunner {
         restaurantsService.showAllItalianRestaurants();
         Thread.sleep(1000);
         restaurantsService.restaurantsWithinCircle();
-
+        Thread.sleep(1000);
+        restaurantsService.restaurantsNear();
     }
 }

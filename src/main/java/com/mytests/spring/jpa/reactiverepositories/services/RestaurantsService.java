@@ -4,6 +4,7 @@ import com.mytests.spring.jpa.reactiverepositories.data.Restaurant;
 import com.mytests.spring.jpa.reactiverepositories.repositories.RestaurantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,16 @@ public class RestaurantsService {
         Circle circle = new Circle(new Point(10,10), 20);
 
         for (Restaurant restaurant : repo.findByLocationWithin(circle)) {
+            System.out.println(restaurant.toString());
+        }
+        System.out.println("**********************************");
+    }
+    public void restaurantsNear(){
+        System.out.println("**********************************");
+        System.out.println("restaurants near the point (non-reactive): ");
+        Point point = new Point(10,10);
+
+        for (Restaurant restaurant : repo.findByLocationNear(point, new Distance(10))) {
             System.out.println(restaurant.toString());
         }
         System.out.println("**********************************");
